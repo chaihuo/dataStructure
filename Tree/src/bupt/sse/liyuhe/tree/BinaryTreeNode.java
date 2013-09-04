@@ -10,12 +10,12 @@ public class BinaryTreeNode {
 	/**
 	 * left child
 	 */
-	BinaryTreeNode left = null;
+	private BinaryTreeNode left = null;
 	
 	 /**
 	  * right child
 	  */
-	BinaryTreeNode right = null;
+	private BinaryTreeNode right = null;
 
 	/**
 	 * construct function

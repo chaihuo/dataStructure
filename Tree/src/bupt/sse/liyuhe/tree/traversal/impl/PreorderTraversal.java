@@ -1,5 +1,7 @@
 package bupt.sse.liyuhe.tree.traversal.impl;
 
+import java.util.Stack;
+
 import bupt.sse.liyuhe.tree.BinaryTreeNode;
 import bupt.sse.liyuhe.tree.traversal.Traversal;
 
@@ -10,9 +12,23 @@ import bupt.sse.liyuhe.tree.traversal.Traversal;
  */
 public final class PreorderTraversal implements Traversal {
 
+	private static Stack<BinaryTreeNode> toTraversal = new Stack<BinaryTreeNode>();
+	
 	@Override
 	public void traversal(BinaryTreeNode root) {
-		// TODO Auto-generated method stub
+	}
+	
+	private static void travelsalToLeft(BinaryTreeNode root) {
+		if (root != null) {
+			System.out.println(root.getItem());
+		}
+		
+		BinaryTreeNode toGetLeft = root;
+		while (toGetLeft.getLeft() != null) {
+			toGetLeft = toGetLeft.getLeft();
+			toTraversal.add(toGetLeft);
+			System.out.println(toGetLeft.getItem());
+		}
 		
 	}
 
