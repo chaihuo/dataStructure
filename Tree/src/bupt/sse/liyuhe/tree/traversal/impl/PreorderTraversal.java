@@ -12,24 +12,26 @@ import bupt.sse.liyuhe.tree.traversal.Traversal;
  */
 public final class PreorderTraversal implements Traversal {
 
-	private static Stack<BinaryTreeNode> toTraversal = new Stack<BinaryTreeNode>();
+	
 	
 	@Override
 	public void traversal(BinaryTreeNode root) {
+		Stack<BinaryTreeNode> toTraversal = new Stack<BinaryTreeNode>();
+		toTraversal.add(root);
+		while (!toTraversal.isEmpty()) {
+			traversalNext(toTraversal);
+		}
 	}
 	
-	private static void travelsalToLeft(BinaryTreeNode root) {
-		if (root != null) {
-			System.out.println(root.getItem());
+	private void traversalNext(Stack<BinaryTreeNode> toTraversal) {
+		BinaryTreeNode currentNode = toTraversal.pop();
+		System.out.println(currentNode.getItem());
+		if (currentNode.getRight() != null) {
+			toTraversal.add(currentNode.getRight());
 		}
-		
-		BinaryTreeNode toGetLeft = root;
-		while (toGetLeft.getLeft() != null) {
-			toGetLeft = toGetLeft.getLeft();
-			toTraversal.add(toGetLeft);
-			System.out.println(toGetLeft.getItem());
+		if (currentNode.getLeft() != null) {
+			toTraversal.add(currentNode.getLeft());
 		}
-		
 	}
 
 	@Override
