@@ -29,46 +29,42 @@ public class InorderTraversal implements Traversal {
 		 * store root after traversal its left child
 		 */
 		Stack<BinaryTreeNode> toTraversal = new Stack<BinaryTreeNode>();
-		downToLeft(toTraversal, root);
-		while(!toTraversal.isEmpty()) {
-			ifNext(toTraversal);
+		/**
+		 * store current root node(for get left child only)
+		 */
+		BinaryTreeNode currentNode = root;
+		while(!toTraversal.isEmpty() || currentNode != null) {
+			currentNode = to(toTraversal, currentNode);
 		}
 	}
 	
-	/**
-	 * traversal a bi-tree to its leftest child
-	 * @param toTraversal
-	 * @param currentNode
-	 */
-	private void downToLeft(Stack<BinaryTreeNode> toTraversal, BinaryTreeNode currentNode) {
-		
+	private BinaryTreeNode to(Stack<BinaryTreeNode> toTraversal, BinaryTreeNode currentNode) {
+
+		/**
+		 * 1.traversal to the leftmost child, and sysout it
+		 * stack all root on the way
+		 */
 		while (currentNode != null) {
 			if (currentNode.getLeft() != null) {
 				toTraversal.add(currentNode);
 				currentNode = currentNode.getLeft();
 			} else {
 				System.out.println(currentNode.getItem());
-				return;
+				return null;
 			}
-			
 		}
 		
+		/**
+		 * 2.sysout root and traversal its right child tree
+		 */
+		BinaryTreeNode stackNode = toTraversal.pop();
 		
-	}
-	
-	/**
-	 * get a node from toTraversal
-	 * @param toTraversal
-	 */
-	private void ifNext(Stack<BinaryTreeNode> toTraversal) {
-		BinaryTreeNode currentNode = toTraversal.pop();
-		if (currentNode.getRight() != null) {
-			System.out.println(currentNode.getItem());
-			downToLeft(toTraversal, currentNode.getRight());
-			return;
+		if (stackNode.getRight() != null) {
+			System.out.println(stackNode.getItem());
+			return stackNode.getRight();
 		} else {
-			System.out.println(currentNode.getItem());
-			return;
+			System.out.println(stackNode.getItem());
+			return null;
 		}
 	}
 
