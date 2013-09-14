@@ -80,6 +80,44 @@ public class BinaryTree {
 	}
 	
 	/**
+	 * bi-tree depth
+	 * @param root
+	 * @return
+	 */
+	public int treeDepth(BinaryTreeNode root) {
+		if (root == null) {
+			return 0;
+		}
+		
+		int right = treeDepth(root.getRight());
+		int left = treeDepth(root.getLeft());
+		
+		return (right > left) ? (right + 1) : (left +1);
+	}
+	
+	private static int depth;
+	private static int leftDepth;
+	private static int rightDepth;
+	public boolean ifBalanced(BinaryTreeNode root, int depth) {
+		if (root == null) {
+			depth = 0;
+			return true;
+		}
+		
+		int leftDepth = depth;
+		int rightDepth = depth;
+		
+		if (ifBalanced(root.getLeft(), leftDepth) && ifBalanced(root.getRight(), rightDepth)) {
+			int depthDiff = leftDepth - rightDepth;
+			if (depthDiff <= 1 && depthDiff >= -1) {
+				depth = 1 + ((leftDepth > rightDepth) ? leftDepth : rightDepth);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
 	 * 
 	 * @return Tree degree
 	 */
