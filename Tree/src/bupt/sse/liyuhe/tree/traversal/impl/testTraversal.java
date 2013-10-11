@@ -9,14 +9,16 @@ public class testTraversal {
 		BinaryTree bt = new BinaryTree();
 		bt.createBinaryTree(num);
 		
-//		PreorderTraversal preT = new PreorderTraversal();
-//		preT.recurTraversal(bt.getRoot());
+		PreorderTraversal preT = new PreorderTraversal();
+		preT.recurTraversal(bt.getRoot());
+		
+		preT.traversal(bt.getRoot());
 		
 //		InorderTraversal it = new InorderTraversal();
 //		it.recurTraversal(bt.getRoot());
 //		
-		PostorderTraversal pt = new PostorderTraversal();
-		pt.recurTraversal(bt.getRoot());
+//		PostorderTraversal pt = new PostorderTraversal();
+//		pt.recurTraversal(bt.getRoot());
 		
 		
 	}
